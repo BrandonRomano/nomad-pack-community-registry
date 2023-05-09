@@ -27,14 +27,6 @@ jobs:
           )
           echo "identifiers=$matrixArray" >> "$GITHUB_OUTPUT"
 
-  job2:
-    runs-on: ubuntu-latest
-    needs: determine_identifiers
-    steps:
-      - env:
-          IDENTIFIERS: ${{needs.determine_identifiers.outputs.identifiers}}
-        run: echo "FROM JOB 2 -- $IDENTIFIERS"
-
   notify_release:
     runs-on: ubuntu-latest
     needs: determine_identifiers
