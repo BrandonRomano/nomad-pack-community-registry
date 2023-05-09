@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
       - id: determine_changed_files
         name: Determine Changed Files
-        uses: jitterbit/get-changed-files@v1 # TODO: restrict to SHA
+        uses: jitterbit/get-changed-files@d06c756e3609dd3dd5d302dde8d1339af3f790f2 # v1
       - id: output_result
         run: |
           matrixArray=$(
