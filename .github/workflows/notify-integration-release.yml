@@ -1,0 +1,19 @@
+name: Notify Integration Release
+on:
+  push:
+    paths:
+      - "packs/**"
+    branches:
+      - main
+jobs:
+  sync-content:
+    name: Notify Releases
+    runs-on: ubuntu-latest
+    steps:
+      - id: determine_changed_files
+        name: Determine Changed Files
+        uses: jitterbit/get-changed-files@v1
+      - run: |
+          for changed_file in ${{ steps.determine_changed_files.outputs.all }}; do
+            echo "Changed: ${changed_file}."
+          done
