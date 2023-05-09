@@ -12,5 +12,5 @@ pack {
 }
 
 integration {
-  identifier    = "nomad/hashicorp/alertmanager"
+  identifier    = "nomad/hashicorp/just-testing"
 }
