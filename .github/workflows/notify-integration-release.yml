@@ -14,6 +14,5 @@ jobs:
         name: Determine Changed Files
         uses: jitterbit/get-changed-files@v1
       - run: |
-          for changed_file in ${{ steps.determine_changed_files.outputs.all }}; do
-            echo "Changed: ${changed_file}."
-          done
+          echo ${{ steps.determine_changed_files.outputs.all }} \
+            | ./.github/scripts/files-to-identifiers.sh
