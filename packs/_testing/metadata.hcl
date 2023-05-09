@@ -6,7 +6,7 @@ app {
 }
 
 pack {
-  name        = "testing - 1"
+  name        = "testing - 2"
   description = "Just testing"
   version     = "0.0.1"
 }
