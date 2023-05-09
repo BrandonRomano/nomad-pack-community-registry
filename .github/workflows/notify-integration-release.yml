@@ -34,3 +34,24 @@ jobs:
       - env:
           IDENTIFIERS: ${{needs.determine_identifiers.outputs.identifiers}}
         run: echo "FROM JOB 2 -- $IDENTIFIERS"
+
+  notify_release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        integration_identifier: ${{needs.determine_identifiers.outputs.identifiers}}
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+      - name: Checkout integration-release-action
+        uses: actions/checkout@v3
+        with:
+          repository: hashicorp/integration-release-action
+          path: ./integration-release-action
+      - name: Notify Release
+        uses: ./integration-release-action
+        with:
+          integration_identifier: ${{ matrix.integration_identifier }}
+          release_version: 1.0.0 # ${{ github.ref_name }}  TODO: calculate this
+          release_sha: ${{ github.ref }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
