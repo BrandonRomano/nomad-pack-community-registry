@@ -37,6 +37,7 @@ jobs:
 
   notify_release:
     runs-on: ubuntu-latest
+    needs: determine_identifiers
     strategy:
       matrix:
         integration_identifier: ${{needs.determine_identifiers.outputs.identifiers}}
