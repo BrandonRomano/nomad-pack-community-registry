@@ -54,3 +54,4 @@ jobs:
           release_version: ${{ steps.calculate_version.outputs.releaseVersion }}
           release_sha: ${{ github.ref }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          integration_strategy: 'nomad-pack'
