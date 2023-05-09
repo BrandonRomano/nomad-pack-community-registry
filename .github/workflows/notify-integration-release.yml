@@ -39,7 +39,8 @@ jobs:
       - id: calculate_version
         name: Calculate Version
         run: |
-          version="$(./.github/scripts/files-to-identifiers.sh ${{ matrix.integration_identifier }})"
+          version="$(./.github/scripts/version-from-identifier.sh ${{ matrix.integration_identifier }})"
+          echo "Computed Version: $version"
           echo "releaseVersion=$version" >> "$GITHUB_OUTPUT"
       - name: Checkout integration-release-action
         uses: actions/checkout@v3
