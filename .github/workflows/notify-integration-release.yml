@@ -40,7 +40,7 @@ jobs:
     needs: determine_identifiers
     strategy:
       matrix:
-        integration_identifier: ${{needs.determine_identifiers.outputs.identifiers}}
+        integration_identifier: ${{fromJson(needs.determine_identifiers.outputs.identifiers)}}
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v3
