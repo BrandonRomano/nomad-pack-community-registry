@@ -10,3 +10,7 @@ pack {
   description = "Just testing"
   version     = "0.0.1"
 }
+
+integration {
+  identifier    = "nomad/hashicorp/alertmanager"
+}
