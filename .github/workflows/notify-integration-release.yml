@@ -19,8 +19,11 @@ jobs:
         uses: jitterbit/get-changed-files@v1 # TODO: restrict to SHA
       - id: output-result
         run: |
-          echo ${{ steps.determine_changed_files.outputs.all }} \
-            | ./.github/scripts/files-to-identifiers.sh \
-            | jq --raw-input --slurp  'split("\n") | map(select(. != ""))' \
-            | jq -c .
+          matrixArray=$(
+            echo ${{ steps.determine_changed_files.outputs.all }} \
+              | ./.github/scripts/files-to-identifiers.sh \
+              | jq --raw-input --slurp  'split("\n") | map(select(. != ""))' \
+              | jq -c .
+          )
+          echo "ARRAY: $matrixArray"
           # echo "identifiers=world" >> "$GITHUB_OUTPUT"
