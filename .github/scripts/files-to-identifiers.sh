@@ -1,3 +1,5 @@
+# #!/usr/bin/env bash
+#
 # This script coerces a list of input files that have been changed
 # into a list of integration identifiers. If a pack file is passed in
 # but the pack does not have an integration identifier specified,

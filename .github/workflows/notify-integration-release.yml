@@ -36,6 +36,11 @@ jobs:
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v3
+      - id: calculate_version
+        name: Calculate Version
+        run: |
+          version="$(./.github/scripts/files-to-identifiers.sh ${{ matrix.integration_identifier }})"
+          echo "releaseVersion=$version" >> "$GITHUB_OUTPUT"
       - name: Checkout integration-release-action
         uses: actions/checkout@v3
         with:
@@ -45,6 +50,6 @@ jobs:
         uses: ./integration-release-action
         with:
           integration_identifier: ${{ matrix.integration_identifier }}
-          release_version: 1.0.0 # ${{ github.ref_name }}  TODO: calculate this
+          release_version: ${{ steps.calculate_version.outputs.releaseVersion }}
           release_sha: ${{ github.ref }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
