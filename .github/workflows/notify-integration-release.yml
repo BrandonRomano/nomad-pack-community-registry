@@ -6,18 +6,18 @@ on:
     branches:
       - main
 jobs:
-  determine-identifiers:
+  determine_identifiers:
     name: Determine Identifiers
     runs-on: ubuntu-latest
     outputs:
-      identifiers: ${{ steps.output-result.outputs.identifiers }}
+      identifiers: ${{ steps.output_result.outputs.identifiers }}
     steps:
       - name: Checkout Nomad Pack Community Registry
         uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
       - id: determine_changed_files
         name: Determine Changed Files
         uses: jitterbit/get-changed-files@v1 # TODO: restrict to SHA
-      - id: output-result
+      - id: output_result
         run: |
           matrixArray=$(
             echo ${{ steps.determine_changed_files.outputs.all }} \
@@ -25,5 +25,12 @@ jobs:
               | jq --raw-input --slurp  'split("\n") | map(select(. != ""))' \
               | jq -c .
           )
-          echo "ARRAY: $matrixArray"
-          # echo "identifiers=world" >> "$GITHUB_OUTPUT"
+          echo "identifiers=$matrixArray" >> "$GITHUB_OUTPUT"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: determine_identifiers
+    steps:
+      - env:
+          IDENTIFIERS: ${{needs.determine_identifiers.outputs.identifiers}}
+        run: echo "FROM JOB 2 -- $IDENTIFIERS"
