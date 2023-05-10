@@ -15,4 +15,5 @@ pack {
 
 integration {
   identifier = "nomad/BrandonRomano/aws-efs-csi"
+  name       = "AWS EFS CSI"
 }
