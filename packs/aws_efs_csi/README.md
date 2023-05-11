@@ -1,4 +1,4 @@
-# AWS EFS CSI plugin (test)
+# AWS EFS CSI plugin (test2)
 
 This pack contains a single system job that runs the AWS EFS CSI plugin. It will run the nodes in
 monolith modes, which means they will run as both nodes and controllers. The job can only be run
